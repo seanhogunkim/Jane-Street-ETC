@@ -89,6 +89,7 @@ public class Bot
                 	for (int j=0; j<message.length; j++)
                 	{
                 		String s = message[j];
+                		System.out.println(s);
 //                    	if (message[0].equals("BOOK")) {
 //                    		System.out.println(message[0]);
 //                    		if (message[1].equals("VALE"){
