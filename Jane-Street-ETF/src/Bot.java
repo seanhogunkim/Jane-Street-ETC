@@ -7,6 +7,7 @@ import java.lang.*;
 import java.io.PrintWriter;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.net.Socket;
 
 class Configuration {
@@ -36,6 +37,7 @@ class Configuration {
 
 public class Bot
 {
+	static int order_id = 0;
     public static void main(String[] args)
     {
         /* The boolean passed to the Configuration constructor dictates whether or not the
@@ -56,8 +58,7 @@ public class Bot
             to_exchange.println(("HELLO " + config.team_name).toUpperCase());
             String reply = from_exchange.readLine().trim();
             System.err.printf("The exchange replied: %s\n", reply);
-            int order_id = 0;
-            int counter_200 = 0;
+            
             while (true) {
                 String message[] = from_exchange.readLine().trim().split(" ");
                 if (message[0].equals("CLOSE")) {
@@ -65,35 +66,7 @@ public class Bot
                     break;
                 }
                 
-                for(int i = 0; i<20; i++) {
-                	from_exchange.readLine();
-
-                }
-                counter_200++;
-                //Every 20 lines, send orders for 999 BUY and 1001 SELL
-            	System.out.println("999 1001 order");
-                to_exchange.println("ADD " + order_id + " BOND BUY 999 1");
-                order_id++;
-                to_exchange.println("ADD " + order_id + " BOND SELL 1001 1");
-                order_id++;
-                
-                //Every 40 lines, send orders for 998 BUY and 1001 SELL
-                if(counter_200%2 == 0) {
-                    to_exchange.println("ADD " + order_id + " BOND BUY 998 1");
-                    order_id++;
-                    to_exchange.println("ADD " + order_id + " BOND SELL 1002 1");
-                    order_id++;
-                	
-                }
-                //Every 200 lines, send orders for 995 BUY 1005 SELL
-                if(counter_200 == 10) {
-                	System.out.println("995 1005 order");
-                	to_exchange.println("ADD " + order_id + " BOND BUY 995 1");
-                    order_id++;
-                    to_exchange.println("ADD " + order_id + " BOND SELL 1005 1");
-                    order_id++;
-                    counter_200 = 0;
-                }
+                bonds(to_exchange, from_exchange);
 
                 
             }
@@ -101,6 +74,44 @@ public class Bot
         catch (Exception e)
         {
             e.printStackTrace(System.out);
+        }
+    }
+    
+    private static void bonds(PrintWriter to_exchange, BufferedReader from_exchange) {
+    	int counter_bonds = 0;
+    	for(int i = 0; i<20; i++) {
+        	try {
+				from_exchange.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+        }
+    	counter_bonds++;
+        //Every 20 lines, send orders for 999 BUY and 1001 SELL
+    	System.out.println("999 1001 order");
+        to_exchange.println("ADD " + order_id + " BOND BUY 999 1");
+        order_id++;
+        to_exchange.println("ADD " + order_id + " BOND SELL 1001 1");
+        order_id++;
+        
+        //Every 40 lines, send orders for 998 BUY and 1001 SELL
+        if(counter_bonds%2 == 0) {
+            to_exchange.println("ADD " + order_id + " BOND BUY 998 1");
+            order_id++;
+            to_exchange.println("ADD " + order_id + " BOND SELL 1002 1");
+            order_id++;
+        	
+        }
+        //Every 200 lines, send orders for 995 BUY 1005 SELL
+        if(counter_bonds == 10) {
+        	System.out.println("995 1005 order");
+        	to_exchange.println("ADD " + order_id + " BOND BUY 995 1");
+            order_id++;
+            to_exchange.println("ADD " + order_id + " BOND SELL 1005 1");
+            order_id++;
+            counter_bonds = 0;
         }
     }
 }
