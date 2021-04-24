@@ -63,10 +63,7 @@ public class Bot
                     System.out.println("The round has ended");
                     break;
                 }
-                
-                for(int i = 0; i<10; i++) {
-                	from_exchange.readLine();
-                }
+
                 to_exchange.println("ADD " + order_id + " BOND BUY 999 1");
                 order_id++;
                 to_exchange.println("ADD " + order_id + " BOND SELL 1001 1");
