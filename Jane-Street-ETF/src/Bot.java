@@ -66,7 +66,7 @@ public class Bot
             String reply = from_exchange.readLine().trim();
             System.err.printf("The exchange replied: %s\n", reply);
             int counter_bonds = 0;
-            int order_id=0;
+            int order_id =0;
             while (true) {
             	
                 String message[] = from_exchange.readLine().trim().split(" ");
