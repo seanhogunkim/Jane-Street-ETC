@@ -65,8 +65,10 @@ public class Bot
                 }
 
                 to_exchange.println("ADD " + order_id + " BOND BUY 999 1");
+                System.out.println("order placed");
                 order_id++;
                 to_exchange.println("ADD " + order_id + " BOND SELL 1001 1");
+                System.out.println("sell order placed");
                 order_id++;
                 
             }
