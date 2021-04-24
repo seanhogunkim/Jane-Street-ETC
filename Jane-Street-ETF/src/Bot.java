@@ -65,21 +65,29 @@ public class Bot
             to_exchange.println(("HELLO " + config.team_name).toUpperCase());
             String reply = from_exchange.readLine().trim();
             System.err.printf("The exchange replied: %s\n", reply);
-            int order_id = 0;
+            int counter_bonds = 0;
             while (true) {
+            	int order_id=0;
                 String message[] = from_exchange.readLine().trim().split(" ");
-                if (message[0].equals("CLOSE")) {
-                    System.out.println("The round has ended");
-                    break;
-                }
+                
+                
 
+            	for(int i = 0; i<10; i++) {
+                	from_exchange.readLine();
+                	if (message[0].equals("CLOSE")) {
+                        System.out.println("The round has ended");
+                        break;
+                    }
+
+                }
+            	counter_bonds++;
+                //Every 10 lines, send orders for 999 BUY and 1001 SELL
+            	System.out.println("999 1001 order");
                 to_exchange.println("ADD " + order_id + " BOND BUY 999 1");
-                System.out.println("order placed");
                 order_id++;
                 to_exchange.println("ADD " + order_id + " BOND SELL 1001 1");
-                System.out.println("sell order placed");
                 order_id++;
-                
+              
                 
             }
         }
@@ -88,4 +96,6 @@ public class Bot
             e.printStackTrace(System.out);
         }
     }
+    
+    
 }
