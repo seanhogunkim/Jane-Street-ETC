@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.net.Socket;
+import java.util.ArrayList;
 
 class Configuration {
     String exchange_name;
@@ -49,6 +50,13 @@ public class Bot
     	
         /* The boolean passed to the Configuration constructor dictates whether or not the
            bot is connecting to the prod or test exchange. Be careful with this switch! */
+    	
+    	ArrayList<int[]> valeBuy = new ArrayList<int[]>();
+    	ArrayList<int[]> valeSell = new ArrayList<int[]>();
+    	
+    	ArrayList<int[]> valbzBuy = new ArrayList<int[]>();
+    	ArrayList<int[]> valbzSell = new ArrayList<int[]>();
+    	
         Configuration config = new Configuration(testing);
         try
         {
@@ -78,15 +86,25 @@ public class Bot
                         System.out.println("The round has ended");
                         break;
                     }
-
+                	System.out.println(message);
+//                	if (message[0].equals("BOOK")) {
+//                		System.out.println(message[0]);
+//                		if (message[1].equals("VALE"){
+//                			
+//                		}
+//                		else if (message[1].equals("VALBZ"){
+//                			
+//                		}
+//                	}
+                
                 }
             	counter_bonds++;
                 //Every 10 lines, send orders for 999 BUY and 1001 SELL
-            	System.out.println("999 1001 order");
-                to_exchange.println("ADD " + order_id + " BOND BUY 999 1");
-                order_id++;
-                to_exchange.println("ADD " + order_id + " BOND SELL 1001 1");
-                order_id++;
+//            	System.out.println("999 1001 order");
+//                to_exchange.println("ADD " + order_id + " BOND BUY 999 1");
+//                order_id++;
+//                to_exchange.println("ADD " + order_id + " BOND SELL 1001 1");
+//                order_id++;
               
                 
             }
