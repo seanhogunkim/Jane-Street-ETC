@@ -67,16 +67,27 @@ public class Bot
                 
                 for(int i = 0; i<20; i++) {
                 	from_exchange.readLine();
-                	System.out.println("reading line");
+
                 	counter_200++;
                 }
                 //Every 20 lines, send orders for 999 BUY and 1001 SELL
+            	System.out.println("999 1001 order");
                 to_exchange.println("ADD " + order_id + " BOND BUY 999 1");
                 order_id++;
                 to_exchange.println("ADD " + order_id + " BOND SELL 1001 1");
                 order_id++;
+                
+                //Every 40 lines, send orders for 998 BUY and 1001 SELL
+                if(counter_200%40 == 0) {
+                    to_exchange.println("ADD " + order_id + " BOND BUY 998 1");
+                    order_id++;
+                    to_exchange.println("ADD " + order_id + " BOND SELL 1002 1");
+                    order_id++;
+                	
+                }
                 //Every 200 lines, send orders for 995 BUY 1005 SELL
                 if(counter_200 == 10) {
+                	System.out.println("995 1005 order");
                 	to_exchange.println("ADD " + order_id + " BOND BUY 995 1");
                     order_id++;
                     to_exchange.println("ADD " + order_id + " BOND SELL 1005 1");
