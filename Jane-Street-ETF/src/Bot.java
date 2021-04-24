@@ -16,9 +16,9 @@ class Configuration {
        1 = slow
        2 = empty
     */
-    final Integer test_exchange_kind = 2;
+    final Integer test_exchange_kind = 0;
     /* replace REPLACEME with your team name! */
-    final String  team_name          = "The Big Dipper";
+    final String  team_name          = "thebigdipper";
 
     Configuration(Boolean test_mode) {
         if(!test_mode) {
