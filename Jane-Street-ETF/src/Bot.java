@@ -38,9 +38,18 @@ public class Bot
 {
     public static void main(String[] args)
     {
+    	//ADD "prod" AS AN ARG TO RUN IN TEST MODE
+    	boolean testing = true;
+    	if (args[0].contentEquals("prod")){
+    		testing = false;
+    	}
+    	else if (args[0].contentEquals("test")){
+    		testing = true;
+    	}
+    	
         /* The boolean passed to the Configuration constructor dictates whether or not the
            bot is connecting to the prod or test exchange. Be careful with this switch! */
-        Configuration config = new Configuration(false);
+        Configuration config = new Configuration(testing);
         try
         {
             Socket skt = new Socket(config.exchange_name(), config.port());
@@ -78,26 +87,7 @@ public class Bot
                 order_id++;
                 to_exchange.println("ADD " + order_id + " BOND SELL 1001 1");
                 order_id++;
-                
-                //Every 20 lines, send orders for 998 BUY and 1001 SELL
-                if(counter_bonds%2 == 0) {
-                	System.out.println("998, 1002 order");
-                    to_exchange.println("ADD " + order_id + " BOND BUY 998 1");
-                    order_id++;
-                    to_exchange.println("ADD " + order_id + " BOND SELL 1002 1");
-                    order_id++;
-                	
-                }
-                //Every 100 lines, send orders for 995 BUY 1005 SELL
-                if(counter_bonds == 10) {
-                	System.out.println("995 1005 order");
-                	to_exchange.println("ADD " + order_id + " BOND BUY 995 1");
-                    order_id++;
-                    to_exchange.println("ADD " + order_id + " BOND SELL 1005 1");
-                    order_id++;
-                    counter_bonds = 0;
-                }
-
+              
                 
             }
         }
