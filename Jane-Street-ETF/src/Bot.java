@@ -38,9 +38,18 @@ public class Bot
 {
     public static void main(String[] args)
     {
+    	//ADD "prod" AS AN ARG TO RUN IN TEST MODE
+    	boolean testing = true;
+    	if (args[0].contentEquals("prod")){
+    		testing = false;
+    	}
+    	else if (args[0].contentEquals("test")){
+    		testing = true;
+    	}
+    	
         /* The boolean passed to the Configuration constructor dictates whether or not the
            bot is connecting to the prod or test exchange. Be careful with this switch! */
-        Configuration config = new Configuration(false);
+        Configuration config = new Configuration(testing);
         try
         {
             Socket skt = new Socket(config.exchange_name(), config.port());
@@ -70,6 +79,7 @@ public class Bot
                 to_exchange.println("ADD " + order_id + " BOND SELL 1001 1");
                 System.out.println("sell order placed");
                 order_id++;
+                
                 
             }
         }
