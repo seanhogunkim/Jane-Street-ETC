@@ -73,7 +73,7 @@ public class Bot
                 
                 
 
-            	for(int i = 0; i<5; i++) {
+            	for(int i = 0; i<2; i++) {
                 	from_exchange.readLine();
                 	if (message[0].equals("CLOSE")) {
                         System.out.println("The round has ended");
