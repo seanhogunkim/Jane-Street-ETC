@@ -68,8 +68,8 @@ public class Bot
                 for(int i = 0; i<20; i++) {
                 	from_exchange.readLine();
 
-                	counter_200++;
                 }
+                counter_200++;
                 //Every 20 lines, send orders for 999 BUY and 1001 SELL
             	System.out.println("999 1001 order");
                 to_exchange.println("ADD " + order_id + " BOND BUY 999 1");
@@ -78,7 +78,7 @@ public class Bot
                 order_id++;
                 
                 //Every 40 lines, send orders for 998 BUY and 1001 SELL
-                if(counter_200%40 == 0) {
+                if(counter_200%2 == 0) {
                     to_exchange.println("ADD " + order_id + " BOND BUY 998 1");
                     order_id++;
                     to_exchange.println("ADD " + order_id + " BOND SELL 1002 1");
