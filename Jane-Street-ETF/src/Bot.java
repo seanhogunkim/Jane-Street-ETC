@@ -86,15 +86,19 @@ public class Bot
                         System.out.println("The round has ended");
                         break;
                     }
-                	System.out.println(message);
-//                	if (message[0].equals("BOOK")) {
-//                		System.out.println(message[0]);
-//                		if (message[1].equals("VALE"){
-//                			
-//                		}
-//                		else if (message[1].equals("VALBZ"){
-//                			
-//                		}
+                	for (int j=0; j<message.length; j++)
+                	{
+                		String s = message[j];
+//                    	if (message[0].equals("BOOK")) {
+//                    		System.out.println(message[0]);
+//                    		if (message[1].equals("VALE"){
+//                    			
+//                    		}
+//                    		else if (message[1].equals("VALBZ"){
+//                    			
+//                    		}
+                	}
+                	
 //                	}
                 
                 }
