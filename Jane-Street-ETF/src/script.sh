@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while true; do 
+while; do 
 java Bot prod
 sleep 5
 done
