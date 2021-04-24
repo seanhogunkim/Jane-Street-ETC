@@ -56,13 +56,13 @@ public class Bot
             to_exchange.println(("HELLO " + config.team_name).toUpperCase());
             String reply = from_exchange.readLine().trim();
             System.err.printf("The exchange replied: %s\n", reply);
-            
+            int counter_bonds = 0;
             while (true) {
             	int order_id=0;
                 String message[] = from_exchange.readLine().trim().split(" ");
                 
                 
-                int counter_bonds = 0;
+
             	for(int i = 0; i<20; i++) {
                 	from_exchange.readLine();
                 	if (message[0].equals("CLOSE")) {
