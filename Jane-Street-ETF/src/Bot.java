@@ -81,6 +81,7 @@ public class Bot
                 
                 //Every 20 lines, send orders for 998 BUY and 1001 SELL
                 if(counter_bonds%2 == 0) {
+                	System.out.println("998, 1002 order");
                     to_exchange.println("ADD " + order_id + " BOND BUY 998 1");
                     order_id++;
                     to_exchange.println("ADD " + order_id + " BOND SELL 1002 1");
