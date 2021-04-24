@@ -73,7 +73,7 @@ public class Bot
                 
                 
 
-            	for(int i = 0; i<10; i++) {
+            	for(int i = 0; i<5; i++) {
                 	from_exchange.readLine();
                 	if (message[0].equals("CLOSE")) {
                         System.out.println("The round has ended");
@@ -82,14 +82,14 @@ public class Bot
 
                 }
             	counter_bonds++;
-                //Every 10 lines, send orders for 999 BUY and 1001 SELL
+                //Every 5 lines, send orders for 999 BUY and 1001 SELL
             	System.out.println("999 1001 order");
                 to_exchange.println("ADD " + order_id + " BOND BUY 999 1");
                 order_id++;
                 to_exchange.println("ADD " + order_id + " BOND SELL 1001 1");
                 order_id++;
 
-                //Every 20 lines, send orders for 998 BUY and 1001 SELL
+                //Every 10 lines, send orders for 998 BUY and 1001 SELL
                 if(counter_bonds%2 == 0) {
                 	System.out.println("998, 1002 order");
                     to_exchange.println("ADD " + order_id + " BOND BUY 998 1");
@@ -99,7 +99,7 @@ public class Bot
 
                 }
                 //Every 100 lines, send orders for 995 BUY 1005 SELL
-                if(counter_bonds == 10) {
+                if(counter_bonds == 20) {
                 	System.out.println("995 1005 order");
                 	to_exchange.println("ADD " + order_id + " BOND BUY 995 1");
                     order_id++;
