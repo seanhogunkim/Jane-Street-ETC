@@ -66,8 +66,9 @@ public class Bot
             String reply = from_exchange.readLine().trim();
             System.err.printf("The exchange replied: %s\n", reply);
             int counter_bonds = 0;
+            int order_id=0;
             while (true) {
-            	int order_id=0;
+            	
                 String message[] = from_exchange.readLine().trim().split(" ");
                 
                 
@@ -87,6 +88,26 @@ public class Bot
                 order_id++;
                 to_exchange.println("ADD " + order_id + " BOND SELL 1001 1");
                 order_id++;
+
+                //Every 20 lines, send orders for 998 BUY and 1001 SELL
+                if(counter_bonds%2 == 0) {
+                	System.out.println("998, 1002 order");
+                    to_exchange.println("ADD " + order_id + " BOND BUY 998 1");
+                    order_id++;
+                    to_exchange.println("ADD " + order_id + " BOND SELL 1002 1");
+                    order_id++;
+
+                }
+                //Every 100 lines, send orders for 995 BUY 1005 SELL
+                if(counter_bonds == 10) {
+                	System.out.println("995 1005 order");
+                	to_exchange.println("ADD " + order_id + " BOND BUY 995 1");
+                    order_id++;
+                    to_exchange.println("ADD " + order_id + " BOND SELL 1005 1");
+                    order_id++;
+                    counter_bonds = 0;
+                }
+
               
                 
             }
